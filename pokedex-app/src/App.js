@@ -1,10 +1,18 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
-import {Rota} from "./route/Rota" 
+import { HeaderPage } from "./components/HeaderPage";
+import { Rota } from "./route/Rota"
 function App() {
+  // const botao = {
+  //   name: 
+  // }
   return (
-    <div>
-    <Rota/>
-    </div>
+    <ChakraProvider>
+      {/* <ContextButton.Provider> */}
+        <HeaderPage />
+        <Rota />
+      {/* </ContextButton.Provider> */}
+    </ChakraProvider>
   );
 }
 
