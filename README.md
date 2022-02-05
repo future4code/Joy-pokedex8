@@ -1,16 +1,18 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Karla Natany
+- Laís Medrado
+- Raphael Tomagnini
 
 Link do Surge: www.link.com.br
 
 O que funciona:
-- Item 1
-- Item 2
+- Renderização homepage lista de pokemons
+- Rota páginas
 
 O que não funciona: 
-- Item 3
-- Item 4
+- Troca de páginas pelo header
+- Página pokedex
+- Página detalhes
+- aplicar context
