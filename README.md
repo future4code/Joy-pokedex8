@@ -5,7 +5,7 @@ Nome dos integrantes:
 - Laís Medrado
 - Raphael Tomagnini
 
-Link do Surge: www.link.com.br
+Link do Surge: https://economic-animal.surge.sh/
 
 O que funciona:
 - Renderização homepage lista de pokemons
