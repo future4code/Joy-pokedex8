@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-import { ButtonComponent } from './Button';
-
 
 const Header = styled.div`
 background-color: yellow;
@@ -13,13 +11,11 @@ display: flex;
 `
 
 
-export const HeaderPage = () => {
+export const HeaderPage = (props) => {
   return(
   <div> 
     <Header>
-        <ButtonComponent>botão</ButtonComponent>
         <p>Pokédex</p>
-      
     </Header>
     </div>
     )

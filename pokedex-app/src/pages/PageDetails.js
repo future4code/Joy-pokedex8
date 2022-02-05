@@ -1,18 +1,20 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import { Button } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import { BoxButtons } from '../components/BoxButton';
+import { ButtonComponent } from '../components/ButtonComponent';
 
 export const PageDetails = () => {
-  return (<div>
-    
+  return (
+    <div>
       <p>DETALHES</p>
-      <Link to="/pagePokedex">
-        <Button>ir para pokedex</Button>
-      </Link>
+      <BoxButtons>
+        <Link to="/pagePokedex">
+          <ButtonComponent textButton='Página Pokédex' />
+        </Link>
+        <Link to="/">
+          <ButtonComponent textButton='Home'/>
+        </Link>
+      </BoxButtons>
 
-      <Link to="/">
-        <Button> voltar home</Button>
-      </Link>
-    
     </div>)
 };

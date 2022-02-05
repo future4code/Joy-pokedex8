@@ -1,17 +1,20 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { BoxButtons } from '../components/BoxButton';
+import { ButtonComponent } from '../components/ButtonComponent';
 
 export const PagePokedex = () => {
   return (
     <div>
       página pokedex
-      <Link to="/">
-        <button> voltar home</button>
-      </Link>
-
-      <Link to="/pageDetails">
-        <button> ir para detalhes</button>
-      </Link>   
-      </div>
+      <BoxButtons>
+        <Link to="/">
+          <ButtonComponent textButton='Home' />
+        </Link>
+        <Link to="/pageDetails">
+          <ButtonComponent textButton='Página Detalhes' />
+        </Link>
+      </BoxButtons>
+    </div>
   )
 };
