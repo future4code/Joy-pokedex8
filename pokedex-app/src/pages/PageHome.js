@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { ButtonComponent } from '../components/ButtonComponent';
 import { CardPokemon } from '../components/CardPokemon';
 import styled from 'styled-components'
 import { BoxButtons } from '../components/BoxButton';
-import axios from 'axios';
-import { Button } from '@chakra-ui/react';
+import { GlobalContext } from '../global/context';
 
 const ContainerCard = styled.div` 
 display: flex;
@@ -18,18 +17,14 @@ justify-content: center;
 
 
 export const PageHome = () => {
-  const [pokemons, setPokemon] = useState([])
+  const { states, requests } = useContext(GlobalContext);
+  const { pokemons } = states;
+  const { getPokemons } = requests
+  
+  useEffect(() => { 
+    getPokemons()
+  }, [])
 
-  const getListPokemons = () => {
-    axios
-      .get('https://pokeapi.co/api/v2/pokemon')
-      .then((res) => {
-        setPokemon(res.data.results)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
 
   const listPokemon = pokemons && pokemons.map((pokemon) => {
     return (
@@ -39,6 +34,7 @@ export const PageHome = () => {
       </div>
     )
   })
+
 
   return (
     <div>
@@ -50,7 +46,6 @@ export const PageHome = () => {
           <ButtonComponent textButton='Página Pokédex' />
         </Link>
       </BoxButtons>
-      <ButtonComponent onClick={getListPokemons} textButton='buscar pokemons' />
       <ContainerCard>
         {listPokemon}
       </ContainerCard>

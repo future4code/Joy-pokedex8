@@ -11,7 +11,6 @@ border-radius: 10px;
 -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.46);
 -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.46);
 box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.46);
-
 `
 
 const PokeImage = styled.img` 
@@ -29,7 +28,6 @@ export const CardPokemon = (props) => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .then((res) => {
-        console.log(res)
         setPokemonDetails(res.data)
       })
       .catch((err) => {
@@ -44,7 +42,7 @@ export const CardPokemon = (props) => {
 
   return (
     <PokeCard>
-      <p>{ pokemonDetails ? pokemonDetails.name : 'carregando...'}</p>
+      <p>Nome:{ pokemonDetails ? pokemonDetails.name : 'carregando...'}</p>
       <PokeImage src={pokemonDetails && pokemonDetails.sprites && pokemonDetails.sprites.front_default} />
       <Stack spacing={4} direction='column' align='center'>
         <Button size='xs'>Adicionar a Pokédex</Button>
