@@ -1,7 +1,8 @@
 import { Button, Stack } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios'
+import { GlobalContext } from '../global/context';
 
 const PokeCard = styled.div`
 width: 200px;
@@ -12,41 +13,24 @@ border-radius: 10px;
 -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.46);
 box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.46);
 `
-
 const PokeImage = styled.img` 
 width: 80%;
 height: 70%;
 margin: auto;
 `
-
-
 export const CardPokemon = (props) => {
-  const [pokemonDetails, setPokemonDetails] = useState({})
-  const { name } = props
+  const { states } = useContext(GlobalContext);
+  const { pokemonDetails } = states
 
-  const getDetailsPokemon = (name) => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-      .then((res) => {
-        setPokemonDetails(res.data)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
-  useEffect(() => {
-    getDetailsPokemon(name)
-  }, [name])
-
+  const listaFiltrada = pokemonDetails &&
+    pokemonDetails.filter((poke) => poke.name === props.name )
 
   return (
     <PokeCard>
-      <p>{ pokemonDetails ? pokemonDetails.name : 'carregando...'}</p>
-      <PokeImage src={pokemonDetails && pokemonDetails.sprites && pokemonDetails.sprites.front_default} />
+      <p>{ listaFiltrada ? listaFiltrada.name : 'carregando...'}</p>
+      <PokeImage src={listaFiltrada && listaFiltrada.sprites && listaFiltrada.sprites.front_default} />
       <Stack spacing={4} direction='column' align='center'>
         <Button size='xs'>Adicionar a Pokédex</Button>
-        <Button size='xs'> Ver detalhes</Button>
       </Stack>
     </PokeCard>);
 };

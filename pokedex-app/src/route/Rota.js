@@ -7,7 +7,7 @@ export const Rota = () => {
    <BrowserRouter>
     <Routes>
       <Route path="/" element={<PageHome />} />
-      <Route path="/pageDetails" element={<PageDetails />} />
+      <Route path="/pageDetails/:name" element={<PageDetails />} />
       <Route path="/pagePokedex" element={<PagePokedex />} />
 
     </Routes>

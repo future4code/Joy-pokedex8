@@ -16,21 +16,26 @@ justify-content: center;
 `
 
 
-export const PageHome = () => {
+export const PageHome = (props) => {
   const { states, requests } = useContext(GlobalContext);
-  const { pokemons } = states;
-  const { getPokemons } = requests
-  
-  useEffect(() => { 
-    getPokemons()
-  }, [])
+  const { pokemons, listDetailsPokemon } = states;
+  const { getAllPokemons } = requests
 
+  useEffect(() => {
+    getAllPokemons()
+  },[])
+
+  console.log('teste');
   const listPokemon = pokemons && pokemons.map((pokemon) => {
     return (
-      <div key={pokemon.name}>
-        <CardPokemon name={pokemon.name}
-        />
-      </div>
+        <ul key={pokemon.name}>
+          <CardPokemon name={pokemon.name} />
+          {/* <li>{pokemon.name}
+            <Link to={`/pageDetails/${pokemon.name}`}>
+              <Button>DETALHES</Button>
+            </Link>
+          </li> */}
+        </ul>
     )
   })
 

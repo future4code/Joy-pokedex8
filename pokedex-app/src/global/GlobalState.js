@@ -1,43 +1,43 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useRequestData } from '../hooks/useRequestData';
 import { GlobalContext } from './context';
-//import axios from 'axios';
 
-export const GlobalState = (props, {name}) => {
-  const [ pokemons, getPokemons ] = useRequestData(`https://pokeapi.co/api/v2/pokemon`,[])
-  // const [ details, getDetails ] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${name}`)
-  // const [ pokemonDetails, setPokemonDetails] = useState({})
+export const GlobalState = (props) => {
+  const [pokemons, setPokemons] = useState([])
+  const [listDetailsPokemon, setListDetailsPokemon ] = useState([])
 
+  const getAllPokemons = () => {
+    axios
+      .get('https://pokeapi.co/api/v2/pokemon?limit=10&offset=20')
+      .then((res) => {
+        setPokemons(res.data.results)
+      })
+      .catch((err) => console.log(err))
+  }
 
-  //passar pela lista de pokemons, para cada item da lista pegar o nome, guardar em uma lista de nomes
-  // const getDetailsPokemon = (name) => {
-  //   axios
-  //     .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-  //     .then((res) => {
-  //
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  // }
+  useEffect(() => {
+    getAllPokemons()
+    const pokemonsList = pokemons
   
+    for(let poke of pokemonsList) {
+      axios.get(`https://pokeapi.co/api/v2/pokemon/${poke.name}`)
+      .then((res)=> { 
+        console.log('resposta api', typeof res);
+        setListDetailsPokemon(res.data)
+      })
+      .catch((err) => console.log(err))
+    }
+  }, [])
+ 
+  
+  const states = {
+    pokemons,
+    listDetailsPokemon
+    }
 
-  // const detailsPokemon = pokemons && pokemons.map((pokemon) => {
-  //   return (
-  //     <p key={pokemon.name}>
-  //     {pokemon.name}
-  //     </p>
-  // )})
-  // setPokemonDetails(detailsPokemon)
-
-  const states = { 
-    pokemons
+  const requests = {
+    getAllPokemons
   }
-    const requests = {
-    getPokemons,
-
-  }
-
 
   return (
     <GlobalContext.Provider value={{ states, requests }}>
@@ -45,3 +45,18 @@ export const GlobalState = (props, {name}) => {
     </GlobalContext.Provider>
   )
 }
+
+// const getDetailsPokemon = async() => {
+//   let promises = pokemons && pokemons.map(poke => {
+//     return axios
+//     .get(`https://pokeapi.co/api/v2/pokemon/${poke.name}`)
+//   })
+
+//   const details = await Promise.all(promises)
+
+//   setPokemonDetails(details)
+//   console.log(details);
+// }
+
+ 
+  // }
