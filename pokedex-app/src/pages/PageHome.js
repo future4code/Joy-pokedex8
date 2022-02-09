@@ -18,23 +18,16 @@ justify-content: center;
 
 export const PageHome = (props) => {
   const { states, requests } = useContext(GlobalContext);
-  const { pokemons, listDetailsPokemon } = states;
-  const { getAllPokemons } = requests
+  const { listDetailsPokemon } = states;
 
-  useEffect(() => {
-    getAllPokemons()
-  },[])
 
-  console.log('teste');
-  const listPokemon = pokemons && pokemons.map((pokemon) => {
+  const listPokemon = listDetailsPokemon && listDetailsPokemon.map((pokemon) => {
     return (
         <ul key={pokemon.name}>
-          <CardPokemon name={pokemon.name} />
-          {/* <li>{pokemon.name}
-            <Link to={`/pageDetails/${pokemon.name}`}>
-              <Button>DETALHES</Button>
-            </Link>
-          </li> */}
+          <CardPokemon 
+          name={pokemon.name} 
+          image={pokemon.sprites.front_default}
+          />
         </ul>
     )
   })

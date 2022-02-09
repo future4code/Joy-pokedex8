@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { GlobalContext } from '../global/context';
 
 const BoxImgPokemon = styled.div`
 height: 200px;
@@ -10,18 +12,21 @@ margin: 20px;
 
 
 export const ImageCard = () => {
-  //importar state do context
-  //sprites.front_default
-  //sprites.back_default
-
+  const { name } = useParams()
+  const { states } = useContext(GlobalContext);
+  const { listDetailsPokemon } = states;
+  
+  const filteredList = listDetailsPokemon.filter((pokemon) => pokemon.name === name )
+  
   return (
     <div>
       <BoxImgPokemon>
-        <p>imagem</p>
+        <img src={filteredList && filteredList[0].sprites.front_default}/>
       </BoxImgPokemon>
 
       <BoxImgPokemon>
-        <p>imagem</p>
+      <img src={filteredList && filteredList[0].sprites.back_default}/>
+        
       </BoxImgPokemon>
     </div>
   )

@@ -11,14 +11,27 @@ padding: 30px;
 margin: 20px;
 `
 export const CardAttack = () => {
-  const { states, requests } = useContext(GlobalContext);
-  const { pokemonDetails } = states;
-  const { getDetailsPokemon } = requests
+  const { states } = useContext(GlobalContext);
   const { name } = useParams()
+  const { listDetailsPokemon } = states
 
-  console.log(getDetailsPokemon);
+  const filteredList = listDetailsPokemon.filter((pokemon) => pokemon.name === name)
+  
+  
+  const getMoves = filteredList[0].moves.map((item) => {
+    return (
+      <div key={item.id}>
+        {item.move.name}
+      </div>
+    )
+  })
+
+  // for (let i=1; getMoves.length<= 10; i++)  {
+  //   console.log(i);
+  // }
   return (
   <BoxAttacks>
     <p>Principais ataques</p>
+    <p>{filteredList && getMoves}</p>
   </BoxAttacks> )
 };

@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios'
 import { GlobalContext } from '../global/context';
+import { Link } from 'react-router-dom';
 
 const PokeCard = styled.div`
 width: 200px;
@@ -19,17 +20,16 @@ height: 70%;
 margin: auto;
 `
 export const CardPokemon = (props) => {
-  const { states } = useContext(GlobalContext);
-  const { pokemonDetails } = states
-
-  const listaFiltrada = pokemonDetails &&
-    pokemonDetails.filter((poke) => poke.name === props.name )
 
   return (
     <PokeCard>
-      <p>{ listaFiltrada ? listaFiltrada.name : 'carregando...'}</p>
-      <PokeImage src={listaFiltrada && listaFiltrada.sprites && listaFiltrada.sprites.front_default} />
+      <p>{props.name ? props.name : 'carregando...'}</p>
+      <p>{props.type}</p>
+      <PokeImage src={props.image} />
       <Stack spacing={4} direction='column' align='center'>
+        <Link to={`/pageDetails/${props.name}`}>
+          <Button>DETALHES</Button>
+        </Link>
         <Button size='xs'>Adicionar a Pokédex</Button>
       </Stack>
     </PokeCard>);
