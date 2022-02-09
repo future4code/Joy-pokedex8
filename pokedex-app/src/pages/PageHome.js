@@ -25,7 +25,6 @@ export const PageHome = () => {
     getPokemons()
   }, [])
 
-
   const listPokemon = pokemons && pokemons.map((pokemon) => {
     return (
       <div key={pokemon.name}>
@@ -34,7 +33,6 @@ export const PageHome = () => {
       </div>
     )
   })
-
 
   return (
     <div>

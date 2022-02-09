@@ -42,7 +42,7 @@ export const CardPokemon = (props) => {
 
   return (
     <PokeCard>
-      <p>Nome:{ pokemonDetails ? pokemonDetails.name : 'carregando...'}</p>
+      <p>{ pokemonDetails ? pokemonDetails.name : 'carregando...'}</p>
       <PokeImage src={pokemonDetails && pokemonDetails.sprites && pokemonDetails.sprites.front_default} />
       <Stack spacing={4} direction='column' align='center'>
         <Button size='xs'>Adicionar a Pokédex</Button>

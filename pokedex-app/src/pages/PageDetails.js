@@ -12,7 +12,6 @@ display: flex;
 `
 
 export const PageDetails = () => {
-  //acessar estados
   return (
     <div>
       <p>DETALHES</p>
