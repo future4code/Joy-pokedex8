@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
+import { Title } from '../pages/PageDetails';
 
 const Header = styled.div`
-background-color: yellow;
-color: red;
+background-color: red;
+color: white;
 height: 50px;
 justify-content:space-around;
 align-items: center;
@@ -15,7 +16,7 @@ export const HeaderPage = (props) => {
   return(
   <div> 
     <Header>
-        <p>Pokédex</p>
+        <Title>Pokédex</Title>
     </Header>
     </div>
     )

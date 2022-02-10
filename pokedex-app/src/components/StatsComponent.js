@@ -5,10 +5,13 @@ import { GlobalContext } from '../global/context';
 
 const BoxStats = styled.div` 
 height: 420px;
-border: black 1px solid;
 width: 200px;
 padding: 30px;
 margin: 20px;
+border-radius: 10px;
+-webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.5);
+-moz-box-shadow:    3px 3px 5px 0px rgba(50, 50, 50, 0.5);
+box-shadow:         3px 3px 5px 0px rgba(50, 50, 50, 0.5);
 `
 export const StatsComponent = () => {
   const { name } = useParams()
@@ -16,21 +19,20 @@ export const StatsComponent = () => {
   const { listDetailsPokemon } = states
 
   const filteredList = listDetailsPokemon.filter((pokemon) => pokemon.name === name)
-  console.log(filteredList);
 
-  const getStats = filteredList[0].stats.map((item) => {
+  const getStats = filteredList.length && filteredList[0].stats.map((itemStats) => {
     return (
-      <div key={item.id}>
-        {item.stat.name}: 
-        {item.base_stat}
+      <div key={itemStats.stat.url}>
+        {itemStats.stat.name}:
+        {itemStats.base_stat}
       </div>
     )
   })
-  
-    return (
-      <BoxStats>
-        <p>Poderes</p>
-          <p>{ filteredList && getStats}</p>
-      </BoxStats>
-    )
+
+  return (
+    <BoxStats>
+      <p>PODERES</p>
+      <p>{filteredList.length && getStats}</p>
+    </BoxStats>
+  )
 };

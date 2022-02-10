@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { BoxButtons } from '../components/BoxButton';
 import { GlobalContext } from '../global/context';
 
-const ContainerCard = styled.div` 
+export const ContainerCard = styled.div` 
 display: flex;
 flex-wrap: wrap;
 column-gap: 10px;
@@ -17,33 +17,33 @@ justify-content: center;
 
 
 export const PageHome = (props) => {
-  const { states, requests } = useContext(GlobalContext);
+  const { states } = useContext(GlobalContext);
   const { listDetailsPokemon } = states;
-
-
+  
   const listPokemon = listDetailsPokemon && listDetailsPokemon.map((pokemon) => {
-    return (
-        <ul key={pokemon.name}>
-          <CardPokemon 
-          name={pokemon.name} 
-          image={pokemon.sprites.front_default}
-          />
-        </ul>
-    )
+    if(!pokemon.isAdded){ 
+      return (
+          <ul key={pokemon.name}>
+            <CardPokemon 
+            name={pokemon.name} 
+            image={pokemon.sprites.front_default}
+            textButton= 'detalhes'
+          /> 
+          </ul>
+      )
+    }
+    return
   })
 
   return (
     <div>
       <BoxButtons>
-        <Link to="/pageDetails">
-          <ButtonComponent textButton='Página Detalhes' />
-        </Link>
         <Link to="/pagePokedex">
           <ButtonComponent textButton='Página Pokédex' />
         </Link>
       </BoxButtons>
       <ContainerCard>
-        {listPokemon}
+        {listPokemon.length && listPokemon}
       </ContainerCard>
     </div>
   )

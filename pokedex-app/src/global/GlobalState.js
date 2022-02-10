@@ -5,6 +5,17 @@ import { GlobalContext } from './context';
 export const GlobalState = (props) => {
   const [listDetailsPokemon, setListDetailsPokemon ] = useState([])
 
+  const insertPokedex = (name) => {
+    const newPokedex = listDetailsPokemon.map((pokemon) => {
+      if (pokemon.name == name){
+        pokemon.isAdded = true  
+      }
+      return pokemon
+    })
+
+    setListDetailsPokemon(newPokedex)
+  }
+
   const getAllPokemons = () => {
     axios
       .get('https://pokeapi.co/api/v2/pokemon?limit=10&offset=20')
@@ -15,7 +26,11 @@ export const GlobalState = (props) => {
         })
         const getPromise = await Promise.all(promises)
 
-        const filteredDetail = getPromise.map((element) => element.data)
+        const filteredDetail = getPromise.map((element) => {
+          const poke = element.data
+          poke.isAdded = false
+          return poke
+        })
         
         setListDetailsPokemon(filteredDetail)
       })
@@ -23,7 +38,13 @@ export const GlobalState = (props) => {
   }
 
   useEffect(() => {
-    getAllPokemons()
+    insertPokedex()
+  }, [])
+
+  useEffect(() => {
+    if(!listDetailsPokemon.length){
+      getAllPokemons()
+    }
   }, [])
 
   const states = {
@@ -34,24 +55,13 @@ export const GlobalState = (props) => {
     getAllPokemons
   }
 
+  const setters = {
+    insertPokedex
+  }
+
   return (
-    <GlobalContext.Provider value={{ states, requests }}>
+    <GlobalContext.Provider value={{ states, requests, setters }}>
       {props.children}
     </GlobalContext.Provider>
   )
 }
-
-// const getDetailsPokemon = async() => {
-//   let promises = pokemons && pokemons.map(poke => {
-//     return axios
-//     .get(`https://pokeapi.co/api/v2/pokemon/${poke.name}`)
-//   })
-
-//   const details = await Promise.all(promises)
-
-//   setPokemonDetails(details)
-//   console.log(details);
-// }
-
- 
-  // }
