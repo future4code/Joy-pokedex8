@@ -7,8 +7,19 @@ export const GlobalState = (props) => {
 
   const insertPokedex = (name) => {
     const newPokedex = listDetailsPokemon.map((pokemon) => {
-      if (pokemon.name == name){
+      if (pokemon.name === name){
         pokemon.isAdded = true  
+      }
+      return pokemon
+    })
+
+    setListDetailsPokemon(newPokedex)
+  }
+
+  const removePokedex = (name) => {
+    const newPokedex = listDetailsPokemon.map((pokemon) => {
+      if (pokemon.name === name){
+        pokemon.isAdded = false
       }
       return pokemon
     })
@@ -56,7 +67,8 @@ export const GlobalState = (props) => {
   }
 
   const setters = {
-    insertPokedex
+    insertPokedex,
+    removePokedex
   }
 
   return (

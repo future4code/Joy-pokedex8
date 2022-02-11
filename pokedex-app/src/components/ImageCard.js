@@ -11,6 +11,9 @@ border-radius: 10px;
 -webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.5);
 -moz-box-shadow:    3px 3px 5px 0px rgba(50, 50, 50, 0.5);
 box-shadow:         3px 3px 5px 0px rgba(50, 50, 50, 0.5);
+background-color: #ffffff10;
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
 `
 const PokeImage = styled.img ` 
 height: 80%;

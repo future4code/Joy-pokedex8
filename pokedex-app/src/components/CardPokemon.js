@@ -1,41 +1,46 @@
 import { Button, Stack } from '@chakra-ui/react';
-import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios'
-import { GlobalContext } from '../global/context';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import { ButtonComponent } from './ButtonComponent';
 
 const PokeCard = styled.div`
 width: 200px;
 height: 300px;
 border-radius: 10px;
--webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.5);
--moz-box-shadow:    3px 3px 5px 0px rgba(50, 50, 50, 0.5);
+-webkit-box-shadow: 5px 3px 5px 0px rgba(50, 50, 50, 0.5);
+-moz-box-shadow:    5px 3px 5px 0px rgba(50, 50, 50, 0.5);
 box-shadow:         3px 3px 5px 0px rgba(50, 50, 50, 0.5);
+background-color: #1616169e;
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
 `
 const PokeImage = styled.img` 
-width: 80%;
-height: 70%;
+width: 70%;
+height: 55%;
 margin: auto;
 `
-export const CardPokemon = (props) => {
-  const { states, requests, setters } = useContext(GlobalContext);
-  const { name } = useParams()
-  const { listDetailsPokemon, pokedex } = states
-  const { insertPokedex } = setters
 
+export const TitleCard = styled.p ` 
+text-align: center;
+text-transform: uppercase;
+padding: 5px;
+font-weight: 700;
+background-color: #68a02d;
+border-radius: 10px 10px 0 0;
+color: white;
+
+`
+export const CardPokemon = (props) => {
   return (
     <PokeCard>
-      <p>{props.name ? props.name : 'carregando...'}</p>
+      <TitleCard>{props.name ? props.name : 'carregando...'}</TitleCard>
       <p>{props.type}</p>
       <PokeImage src={props.image} />
       <Stack spacing={4} direction='column' align='center'>
         <Link to={`/pageDetails/${props.name}`}>
-          <Button variant='solid' size='xs'>DETALHES</Button>
+          <Button color='black' variant='outline' size='xs'>Detalhes</Button>
         </Link>
-        <Button onClick={() => insertPokedex(props.name)} variant='solid' size='xs'>Inserir Pokedex</Button>
+        <ButtonComponent onClick={props.onClick} textButton={props.textButton} variant='solid' size='xs'/>
 
       </Stack>
     </PokeCard>);

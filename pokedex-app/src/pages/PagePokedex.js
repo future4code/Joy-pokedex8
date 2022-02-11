@@ -1,17 +1,14 @@
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import { BoxButtons } from '../components/BoxButton';
-import { ButtonComponent } from '../components/ButtonComponent';
+import React, { useContext } from 'react';
 import { CardPokemon } from '../components/CardPokemon';
 import { GlobalContext } from '../global/context';
-import { ContainerCard } from './PageHome';
-import styled from 'styled-components';
+import { ContainerCard, ContainerPincipal } from './PageHome';
+import { Title } from './PageDetails';
+import { HeaderPage } from '../components/HeaderPage';
 
 export const PagePokedex = (props) => {
-  //importar estados globais
-  const { states } = useContext(GlobalContext)
+  const { states, setters } = useContext(GlobalContext)
   const { listDetailsPokemon } = states
-
+  const { removePokedex } = setters
 
   const cardPokedex = listDetailsPokemon && listDetailsPokemon.map((poke) => {
     if (poke.isAdded) {
@@ -20,6 +17,8 @@ export const PagePokedex = (props) => {
           <CardPokemon
             name={poke.name}
             image={poke.sprites.front_default}
+            textButton='Remover da Pokedex'
+            onClick={() => removePokedex(poke.name)}
             />
         </ul>
       )
@@ -27,15 +26,12 @@ export const PagePokedex = (props) => {
   })
 
   return (
-    <div>
-      <BoxButtons>
-        <Link to="/">
-          <ButtonComponent textButton='Home' />
-        </Link>
-      </BoxButtons>
+    <ContainerPincipal>
+      <HeaderPage textButton='Home'/>
+      <Title>Meus Pokémons</Title>
       <ContainerCard>
         {cardPokedex.length && cardPokedex}
       </ContainerCard>
-    </div>
+    </ContainerPincipal>
   )
 };
