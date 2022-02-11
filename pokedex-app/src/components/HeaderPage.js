@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import pokedex from '../pokedex.png'
-import { ButtonComponent } from './ButtonComponent';
 import pokedexIcon from '../pokedexIcon.png'
 import searchPokemons from '../searchPokemons.png'
 import { Tooltip } from '@chakra-ui/react'
@@ -17,7 +16,7 @@ const ContainerHeader = styled.div`
   height: 60px;
   align-items: center;
   padding: 5px;
-  background-color: #f7f7f857;
+  background-color: #1616169e;
   color: white;
   
 `
@@ -27,7 +26,7 @@ grid-area: 1 / 1 / 2 / 2;
 const PokeLogo = styled.img`
 width: 150px;
 height: 50px;
-margin-left: 350px;
+margin-left: 500px;
 `
 const Titulo = styled.div` 
 grid-area: 1 / 2 / 2 / 3;

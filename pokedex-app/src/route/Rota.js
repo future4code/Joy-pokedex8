@@ -9,7 +9,6 @@ export const Rota = () => {
       <Route path="/" element={<PageHome />} />
       <Route path="/pageDetails/:name" element={<PageDetails />} />
       <Route path="/pagePokedex" element={<PagePokedex />} />
-
     </Routes>
     </BrowserRouter>
   </div>);

@@ -29,7 +29,7 @@ export const GlobalState = (props) => {
 
   const getAllPokemons = () => {
     axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=10&offset=20')
+      .get('https://pokeapi.co/api/v2/pokemon?limit=18&offset=20')
       .then(async(res) => {
         const allPokemons = res.data.results
         const promises = allPokemons.map((poke) => {

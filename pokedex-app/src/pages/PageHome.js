@@ -23,16 +23,12 @@ justify-content: space-around;
 background-color: yellow;
 margin: auto;
 background-image: url(${pokemonBack});
-
 `
-
-
 export const PageHome = (props) => {
   const { states, setters } = useContext(GlobalContext);
   const { listDetailsPokemon } = states;
   const { insertPokedex } = setters;
 
-  console.log(setters);
   const listPokemon = listDetailsPokemon && listDetailsPokemon.map((pokemon) => {
     if(!pokemon.isAdded){ 
       return (
@@ -40,9 +36,8 @@ export const PageHome = (props) => {
             <CardPokemon 
             name={pokemon.name} 
             image={pokemon.sprites.front_default}
-            textButton= 'Inserir Pokedex'
+            textButton= '+ Pokedex'
             onClick={() => insertPokedex(pokemon.name)}
-            
           /> 
           </ul>
       )

@@ -18,13 +18,20 @@ export const Title = styled.p `
 weight: bold;
 font-size: 30px;
 text-align: center;
-color: white;
+color: #234e52;
+background-color: #ffd144;
+width: 400px;
+margin: auto;
+margin-top: 10px;
+margin-bottom: 10px;
+border-radius: 10px;
 `
 
 export const PageDetails = () => {
   const { name } = useParams()
   return (
     <ContainerPincipal>
+
       <HeaderPage/>
       
       <BoxButtons>
@@ -36,8 +43,6 @@ export const PageDetails = () => {
         </Link>
       </BoxButtons>
       
-      <Title>{name}</Title>
-
       <ContainerDetalhes>
         <StatsComponent />
         <ImageCard />
