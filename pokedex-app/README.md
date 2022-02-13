@@ -19,10 +19,10 @@
 
 </BR>
 
-                         TEAM    
-                      Karla Natany
-                      Laís Medrado
-                    Raphael Tomagnini
+                                                                 TEAM    
+                                                              Karla Natany
+                                                              Laís Medrado
+                                                            Raphael Tomagnini
 
 
  
