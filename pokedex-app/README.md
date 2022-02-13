@@ -14,7 +14,7 @@
 </BR>
 
 
-**Pokedéx** é um projeto desenvolvido em equipe durante o  curso de desenvolvedor web fullstack  na  Labenu no ano de 2022.1, com o intuito de aplicar os conhecimentos nas linguagens de programação aprendidas até agora. 
+**Pokédex** é um projeto desenvolvido em equipe durante o  curso de desenvolvedor web fullstack  na  Labenu no ano de 2022.1, com o intuito de aplicar os conhecimentos nas linguagens de programação aprendidas até agora. 
 </BR>
 
 </BR>
@@ -34,11 +34,11 @@
      🖋 Funcionalidade
 </BR>
 
--  Renderização homepage
--  Renderização pageDetails
--  Renderização pagePokedex
--  Rotas para troca de páginas
--  Remoção/acréscimo de itens na lista
+-  Renderização homepage;
+-  Renderização pageDetails;
+-  Renderização pagePokedex;
+-  Rotas para troca de páginas;
+-  Remoção/acréscimo de itens na lista;
 
 
 
@@ -48,10 +48,10 @@
 
 O projeto em si possui três grandes aplicações:
 
--  Home -  responsável por mostrar a lista de 20 Pokemóns que vem diretamente da API aos usuários.
+-  Home -  responsável por mostrar a lista de 20 Pokemóns que vem diretamente da API aos usuários;
 
 - Pokédex - lista de Pokemóns renderizada na tela,
-formada previamente por cards selecionados pelo próprio usuário.
+formada previamente por cards selecionados pelo próprio usuário;
 
 - Página de detalhes - página que abre quando  o usuário clica no card para ver os detalhes de algum Pokemón específico; 
 
