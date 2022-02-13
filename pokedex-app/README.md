@@ -6,7 +6,7 @@
 
 
 
-<p align = "center">Sejam bem vindos ao Pokedéx, construção de um App Lista Pokémon usando Reactjs, Hooks e Context API;
+<p align = "center">Sejam bem vindos ao Pokedéx, construção de um App Lista Pokémon usando Reactjs, Hooks e Context API. Que tem como fonte de dados a Poke Api.;
 </BR>
 </BR>
 
@@ -14,7 +14,7 @@
 </BR>
 
 
-**Pokedéx** é um projeto desenvolvido em equipe durante o  curso de desenvolvedor web fullstack  na  Labenu no ano de 2022.1, com o intuito de aplicar os conhecimentos nas linguagens de programação aprendidas até agora. E que tem como fonte de dados a Poke Api.
+**Pokedéx** é um projeto desenvolvido em equipe durante o  curso de desenvolvedor web fullstack  na  Labenu no ano de 2022.1, com o intuito de aplicar os conhecimentos nas linguagens de programação aprendidas até agora. 
 </BR>
 
 </BR>
