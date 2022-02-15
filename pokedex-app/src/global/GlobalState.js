@@ -1,52 +1,78 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useRequestData } from '../hooks/useRequestData';
 import { GlobalContext } from './context';
-//import axios from 'axios';
 
-export const GlobalState = (props, {name}) => {
-  name = detailsPokemon
-  const [ pokemons, getPokemons ] = useRequestData(`https://pokeapi.co/api/v2/pokemon`,[])
-  const [ details, getDetails ] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${name}`)
-  const [ pokemonDetails, setPokemonDetails] = useState({})
+export const GlobalState = (props) => {
+  const [listDetailsPokemon, setListDetailsPokemon ] = useState([])
 
+  const insertPokedex = (name) => {
+    const newPokedex = listDetailsPokemon.map((pokemon) => {
+      if (pokemon.name === name){
+        pokemon.isAdded = true  
+      }
+      return pokemon
+    })
 
-  //passar pela lista de pokemons, para cada item da lista pegar o nome, guardar em uma lista de nomes
-  // const getDetailsPokemon = (name) => {
-  //   axios
-  //     .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-  //     .then((res) => {
-  //       pokemonDetails[res.data.name] = res.data 
-  //       pokemonDetails['bulbasaur'] = res.data
-  //       setPokemonDetails(pokemonDetails)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  // }
-  
-
-  const detailsPokemon = pokemons && pokemons.map((pokemon) => {
-    return (
-      <p key={pokemon.name}>
-      {pokemon.name}
-      </p>
-  )})
-  setPokemonDetails(detailsPokemon)
-
-  const states = { 
-    pokemons,
-    
+    setListDetailsPokemon(newPokedex)
   }
-  
-  //objeto guardando nossas requisições
+
+  const removePokedex = (name) => {
+    const newPokedex = listDetailsPokemon.map((pokemon) => {
+      if (pokemon.name === name){
+        pokemon.isAdded = false
+      }
+      return pokemon
+    })
+
+    setListDetailsPokemon(newPokedex)
+  }
+
+  const getAllPokemons = () => {
+    axios
+      .get('https://pokeapi.co/api/v2/pokemon?limit=18&offset=20')
+      .then(async(res) => {
+        const allPokemons = res.data.results
+        const promises = allPokemons.map((poke) => {
+          return axios.get(`https://pokeapi.co/api/v2/pokemon/${poke.name}`)
+        })
+        const getPromise = await Promise.all(promises)
+
+        const filteredDetail = getPromise.map((element) => {
+          const poke = element.data
+          poke.isAdded = false
+          return poke
+        })
+        
+        setListDetailsPokemon(filteredDetail)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    insertPokedex()
+  }, [])
+
+  useEffect(() => {
+    if(!listDetailsPokemon.length){
+      getAllPokemons()
+    }
+  }, [])
+
+  const states = {
+    listDetailsPokemon
+  }
+
   const requests = {
-    getPokemons,
-
+    getAllPokemons
   }
 
+  const setters = {
+    insertPokedex,
+    removePokedex
+  }
 
   return (
-    <GlobalContext.Provider value={{ states, requests }}>
+    <GlobalContext.Provider value={{ states, requests, setters }}>
       {props.children}
     </GlobalContext.Provider>
   )

@@ -1,20 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import { BoxButtons } from '../components/BoxButton';
-import { ButtonComponent } from '../components/ButtonComponent';
+import React, { useContext } from 'react';
+import { CardPokemon } from '../components/CardPokemon';
+import { GlobalContext } from '../global/context';
+import { ContainerCard, ContainerPincipal } from './PageHome';
+import { Title } from './PageDetails';
+import { HeaderPage } from '../components/HeaderPage';
 
-export const PagePokedex = () => {
+export const PagePokedex = (props) => {
+  const { states, setters } = useContext(GlobalContext)
+  const { listDetailsPokemon } = states
+  const { removePokedex } = setters
+
+  const cardPokedex = listDetailsPokemon && listDetailsPokemon.map((poke) => {
+    if (poke.isAdded) {
+      return (
+        <ul key={poke.id}>
+          <CardPokemon
+            name={poke.name}
+            image={poke.sprites.front_default}
+            textButton='Remover da Pokedex'
+            onClick={() => removePokedex(poke.name)}
+            />
+        </ul>
+      )
+    }
+  })
+
   return (
-    <div>
-      página pokedex
-      <BoxButtons>
-        <Link to="/">
-          <ButtonComponent textButton='Home' />
-        </Link>
-        <Link to="/pageDetails">
-          <ButtonComponent textButton='Página Detalhes' />
-        </Link>
-      </BoxButtons>
-    </div>
+    <ContainerPincipal>
+      <HeaderPage textButton='Home'/>
+      <Title>Meus Pokémons</Title>
+      <ContainerCard>
+        {cardPokedex.length && cardPokedex}
+      </ContainerCard>
+    </ContainerPincipal>
   )
 };
