@@ -71,7 +71,7 @@ formada previamente por cards selecionados pelo próprio usuário;
 
 
     💻Link do surge:
-- https://economic-animal.surge.sh/
+- https://spotted-office.surge.sh/
     
 
 
